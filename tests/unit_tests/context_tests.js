@@ -2,7 +2,7 @@
 var Context = require('../../lib');
 var expect = require('chai').expect;
 var BBPromise = require('bluebird');
-
+var sinon = require('sinon');
 
 describe('Context', function () {
   describe('session management', function () {
@@ -155,6 +155,38 @@ describe('Context', function () {
       it('returns all member, bucket and anon claims', function () {
         expect(context.getClaims()).to.eql(['claim-9', 'claim-10', 'claim-5', 'claim-6', 'claim-7', 'claim-8']);
       });
+    });
+  });
+  describe('#hasClaim', function () {
+    var context = new Context();
+    var claim = Context.claims.create({
+      key: 'TestClaim',
+      relatedToApi: 'test',
+      name: 'A Test Claim',
+      Description: 'This is a test claim',
+      defaultRoleValue: true,
+      defaultAnonValue: true
+    });
+    var stub;
+    before(function () {
+      stub = sinon.stub(context, 'getClaims');
+    });
+    after(function () {
+      context.getClaims.restore();
+    });
+    it('returns true if claim in getClaims', function () {
+      stub.returns(['claim-1', 'claim-2', 'TestClaim', 'claim-3']);
+      return expect(context.hasClaim(claim)).to.eventually.become(true);
+    });
+    it('returns false if claim not in getClaims', function () {
+      stub.returns(['claim-1', 'claim-2', 'claim-3']);
+      return expect(context.hasClaim(claim)).to.eventually.become(false);
+    });
+    it('returns false if not passed a valid claim', function () {
+      return BBPromise.all([
+        expect(context.hasClaim()).to.eventually.become(false),
+        expect(context.hasClaim({})).to.eventually.become(false),
+      ]);
     });
   });
 });
