@@ -58,7 +58,7 @@ describe('Context', function () {
         return expect(context.getClaims()).to.eql([]);
       });
     });
-    describe('if application and no member', function () {
+    describe('if application and no user', function () {
       var context = new Context({
         environment: 'dev',
         application: {
@@ -73,7 +73,7 @@ describe('Context', function () {
         expect(context.getClaims()).to.eql(['claim-1', 'claim-2']);
       });
     });
-    describe('if application and member but no bucket', function () {
+    describe('if application and user but no bucket', function () {
       var context = new Context({
         roles: [{
           _id: 'user',
@@ -98,7 +98,7 @@ describe('Context', function () {
           }
         },
         environment: 'dev',
-        member: {
+        user: {
           roles: {
             mainRole: 'user',
             bucketRoles: [{
@@ -109,11 +109,11 @@ describe('Context', function () {
         }
       });
 
-      it('returns all member and anon claims', function () {
+      it('returns all user and anon claims', function () {
         expect(context.getClaims()).to.eql(['claim-1', 'claim-2', 'claim-3', 'claim-4']);
       });
     });
-    describe('if application and member and bucket', function () {
+    describe('if application and user and bucket', function () {
       var context = new Context({
         roles: [{
           _id: 'user',
@@ -138,7 +138,7 @@ describe('Context', function () {
             live: ['claim-9', 'claim-10']
           }
         },
-        member: {
+        user: {
           roles: {
             mainRole: 'user',
             bucketRoles: [{
@@ -152,7 +152,7 @@ describe('Context', function () {
         }
 
       });
-      it('returns all member, bucket and anon claims', function () {
+      it('returns all user, bucket and anon claims', function () {
         expect(context.getClaims()).to.eql(['claim-9', 'claim-10', 'claim-5', 'claim-6', 'claim-7', 'claim-8']);
       });
     });
