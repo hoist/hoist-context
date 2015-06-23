@@ -1,5 +1,5 @@
 {
-  "name": "hoist-context",
+  "name": "@hoist/context",
   "version": "1.0.0",
   "description": "Handles User Context for all Hoist Services",
   "main": "./lib/index.js",
