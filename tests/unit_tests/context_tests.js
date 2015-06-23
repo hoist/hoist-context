@@ -7,49 +7,19 @@ var sinon = require('sinon');
 describe('Context', function () {
   describe('session management', function () {
     it('returns same context on chain', function () {
-      Context.namespace.run(function () {
-        Context.get()
-          .then(function (context) {
-            context.name = 'I set this name';
-          }).then(function () {
-            return Context.get();
-          }).then(function (context) {
-            expect(context.name).to.eql('I set this name');
-          }).done();
-      });
-    });
-    it('returns different chain', function (done) {
-      //we haven't set context here
-      var contexts = [];
 
-      function assertContext(context) {
-        contexts.push(context);
-        if (contexts.length === 2) {
-          expect(contexts[0].name).to.not.eql(contexts[1].name);
-          done();
-        }
-      }
-      //run it twice
-      BBPromise.try(function () {
-        Context.namespace.run(function () {
-          Context.get().then(function (context) {
-            context.name = 1;
-            return Context.get();
-          }).then(function (context) {
-            assertContext(context);
-          }).done();
-        });
+      Context.get()
+        .then(function (context) {
+          context.name = 'I set this name';
+        }).then(function () {
+          return Context.get();
+        }).then(function (context) {
+          expect(context.name).to.eql('I set this name');
+        }).done();
 
-        Context.namespace.run(function () {
-          Context.get().then(function (context) {
-            context.name = 2;
-            return Context.get();
-          }).then(function (context) {
-            assertContext(context);
-          }).done();
-        });
-      });
     });
+
+
   });
   describe('#getClaims', function () {
     describe('if no application set', function () {
