@@ -1,5 +1,5 @@
 'use strict';
-var Context = require('../../lib');
+var Context = require('../../src');
 var expect = require('chai').expect;
 var BBPromise = require('bluebird');
 var sinon = require('sinon');
@@ -155,7 +155,7 @@ describe('Context', function () {
     it('returns false if not passed a valid claim', function () {
       return BBPromise.all([
         expect(context.hasClaim()).to.eventually.become(false),
-        expect(context.hasClaim({})).to.eventually.become(false),
+        expect(context.hasClaim({})).to.eventually.become(false)
       ]);
     });
   });

@@ -93,4 +93,3 @@ module.exports = Claims;
   api: 'bucket',
   default: false
 }];*/
-//# sourceMappingURL=../claims/index.js.map

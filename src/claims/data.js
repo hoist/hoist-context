@@ -1,5 +1,3 @@
-'use strict';
-
 var Claims = require('./claims');
 
 exports.GlobalRead = Claims.create({
@@ -50,4 +48,4 @@ exports.Delete = Claims.create({
   defaultRoleValue: false,
   defaultAnonValue: false
 });
-//# sourceMappingURL=../claims/data.js.map
+

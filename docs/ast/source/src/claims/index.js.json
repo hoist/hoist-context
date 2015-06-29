@@ -1,0 +1,571 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "Literal",
+        "value": "use strict",
+        "raw": "'use strict'",
+        "range": [
+          0,
+          12
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        }
+      },
+      "range": [
+        0,
+        13
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 13
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Line",
+          "value": "claims should be positive 'can do something not cannot do something'",
+          "range": [
+            14,
+            84
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 70
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "claims should be singular unless always about something plural",
+          "range": [
+            85,
+            149
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 64
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "Claims",
+            "range": [
+              155,
+              161
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 4
+              },
+              "end": {
+                "line": 5,
+                "column": 10
+              }
+            }
+          },
+          "init": {
+            "type": "CallExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "require",
+              "range": [
+                164,
+                171
+              ],
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 13
+                },
+                "end": {
+                  "line": 5,
+                  "column": 20
+                }
+              }
+            },
+            "arguments": [
+              {
+                "type": "Literal",
+                "value": "./claims",
+                "raw": "'./claims'",
+                "range": [
+                  172,
+                  182
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 31
+                  }
+                }
+              }
+            ],
+            "range": [
+              164,
+              183
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "line": 5,
+                "column": 32
+              }
+            }
+          },
+          "range": [
+            155,
+            183
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 4
+            },
+            "end": {
+              "line": 5,
+              "column": 32
+            }
+          }
+        }
+      ],
+      "kind": "var",
+      "range": [
+        151,
+        184
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 33
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Line",
+          "value": "claims should be positive 'can do something not cannot do something'",
+          "range": [
+            14,
+            84
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 70
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "claims should be singular unless always about something plural",
+          "range": [
+            85,
+            149
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 64
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "Claims",
+            "range": [
+              186,
+              192
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 6
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "data",
+            "range": [
+              193,
+              197
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 11
+              }
+            }
+          },
+          "range": [
+            186,
+            197
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 7,
+              "column": 11
+            }
+          }
+        },
+        "right": {
+          "type": "CallExpression",
+          "callee": {
+            "type": "Identifier",
+            "name": "require",
+            "range": [
+              200,
+              207
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 14
+              },
+              "end": {
+                "line": 7,
+                "column": 21
+              }
+            }
+          },
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "./data",
+              "raw": "'./data'",
+              "range": [
+                208,
+                216
+              ],
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 22
+                },
+                "end": {
+                  "line": 7,
+                  "column": 30
+                }
+              }
+            }
+          ],
+          "range": [
+            200,
+            217
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 14
+            },
+            "end": {
+              "line": 7,
+              "column": 31
+            }
+          }
+        },
+        "range": [
+          186,
+          217
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 31
+          }
+        }
+      },
+      "range": [
+        186,
+        218
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "module",
+            "range": [
+              219,
+              225
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 6
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "exports",
+            "range": [
+              226,
+              233
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 7
+              },
+              "end": {
+                "line": 8,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            219,
+            233
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 14
+            }
+          }
+        },
+        "right": {
+          "type": "Identifier",
+          "name": "Claims",
+          "range": [
+            236,
+            242
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 17
+            },
+            "end": {
+              "line": 8,
+              "column": 23
+            }
+          }
+        },
+        "range": [
+          219,
+          242
+        ],
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 0
+          },
+          "end": {
+            "line": 8,
+            "column": 23
+          }
+        }
+      },
+      "range": [
+        219,
+        243
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 24
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "\n[{\n  name: 'Read Data',\n  key: 'read-data',\n  api: 'data',\n  dataGranular: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Write Data',\n  key: 'write-data',\n  api: 'data',\n  dataGranular: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Sign Up',\n  key: 'create-user',\n  api: 'auth',\n  globalOnly: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Invite User',\n  key: 'invite-user',\n  api: 'auth',\n  defaultValue: true\n}, {\n  name: 'Change User\\'s Role',\n  key: 'change-role',\n  api: 'auth',\n  defaultValue: false\n}, {\n  name: 'Send Notification',\n  key: 'send-notification',\n  api: 'notify',\n  anonAllowed: true,\n  globalOnly: true,\n  defaultValue: true\n}, {\n  name: 'Upload File',\n  key: 'upload-file',\n  api: 'file',\n  default: true,\n  globalOnly: true,\n  anonAllowed: true\n}, {\n  name: 'Read File',\n  key: 'read-file',\n  api: 'file',\n  default: true,\n  globalOnly: true,\n  anonAllowed: true\n}, {\n  name: 'Use Connector',\n  key: 'use-connector',\n  api: 'proxy',\n  default: false,\n  globalOnly: true\n}, {\n  name: 'Create Bucket',\n  key: 'create-bucket',\n  api: 'bucket',\n  globalOnly: true,\n  default: true\n}, {\n  name: 'View Members in Bucket',\n  key: 'view-bucket-member',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'Delete Bucket',\n  key: 'delete-bucket',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'View Bucket Meta Data',\n  key: 'view-bucket',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'Update Bucket Meta Data',\n  key: 'update-bucket',\n  api: 'bucket',\n  default: false\n}];",
+          "range": [
+            245,
+            1784
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 0
+            },
+            "end": {
+              "line": 95,
+              "column": 5
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    243
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 8,
+      "column": 24
+    }
+  },
+  "comments": [
+    {
+      "type": "Line",
+      "value": "claims should be positive 'can do something not cannot do something'",
+      "range": [
+        14,
+        84
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 70
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "claims should be singular unless always about something plural",
+      "range": [
+        85,
+        149
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 64
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "\n[{\n  name: 'Read Data',\n  key: 'read-data',\n  api: 'data',\n  dataGranular: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Write Data',\n  key: 'write-data',\n  api: 'data',\n  dataGranular: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Sign Up',\n  key: 'create-user',\n  api: 'auth',\n  globalOnly: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Invite User',\n  key: 'invite-user',\n  api: 'auth',\n  defaultValue: true\n}, {\n  name: 'Change User\\'s Role',\n  key: 'change-role',\n  api: 'auth',\n  defaultValue: false\n}, {\n  name: 'Send Notification',\n  key: 'send-notification',\n  api: 'notify',\n  anonAllowed: true,\n  globalOnly: true,\n  defaultValue: true\n}, {\n  name: 'Upload File',\n  key: 'upload-file',\n  api: 'file',\n  default: true,\n  globalOnly: true,\n  anonAllowed: true\n}, {\n  name: 'Read File',\n  key: 'read-file',\n  api: 'file',\n  default: true,\n  globalOnly: true,\n  anonAllowed: true\n}, {\n  name: 'Use Connector',\n  key: 'use-connector',\n  api: 'proxy',\n  default: false,\n  globalOnly: true\n}, {\n  name: 'Create Bucket',\n  key: 'create-bucket',\n  api: 'bucket',\n  globalOnly: true,\n  default: true\n}, {\n  name: 'View Members in Bucket',\n  key: 'view-bucket-member',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'Delete Bucket',\n  key: 'delete-bucket',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'View Bucket Meta Data',\n  key: 'view-bucket',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'Update Bucket Meta Data',\n  key: 'update-bucket',\n  api: 'bucket',\n  default: false\n}];",
+      "range": [
+        245,
+        1784
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 95,
+          "column": 5
+        }
+      }
+    }
+  ]
+}
