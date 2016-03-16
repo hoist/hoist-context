@@ -2,7 +2,7 @@
 import {
   extend,
   find,
-  any
+  some
 }
 from 'lodash';
 import Bluebird from 'bluebird';
@@ -51,7 +51,7 @@ class Context {
       if (!claim || !claim.key) {
         return false;
       }
-      return any(this.getClaims(), (key) => {
+      return some(this.getClaims(), (key) => {
         return key === claim.key;
       });
     });

@@ -1,5 +1,6 @@
 [
   {
+    "__docId__": 0,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -12,6 +13,7 @@
     "content": "'use strict';\nvar _ = require('lodash');\n\nfunction Claim(desc) {\n  _.extend(this, desc);\n}\nvar Claims = {\n  create: function (desc) {\n    var claim = new Claim(desc);\n    Claims[claim.key] = claim;\n    return claim;\n  }\n};\n\n\nmodule.exports = Claims;\n"
   },
   {
+    "__docId__": 1,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -32,6 +34,7 @@
     }
   },
   {
+    "__docId__": 2,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -56,6 +59,7 @@
     "generator": false
   },
   {
+    "__docId__": 3,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -76,6 +80,7 @@
     }
   },
   {
+    "__docId__": 4,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -88,6 +93,7 @@
     "content": "var Claims = require('./claims');\n\nexports.GlobalRead = Claims.create({\n  key: 'DataGlobalRead',\n  relatedToApi: 'data',\n  name: 'Read Global Data',\n  Description: 'User can fetch global data from the Hoist store',\n  defaultRoleValue: true,\n  defaultAnonValue: true\n});\nexports.GlobalWrite = Claims.create({\n  key: 'DataGlobalWrite',\n  relatedToApi: 'data',\n  name: 'Write Global Data',\n  Description: 'User can write global data to the Hoist store',\n  defaultRoleValue: true,\n  defaultAnonValue: true\n});\nexports.GlobalDelete = Claims.create({\n  key: 'DataGlobalDelete',\n  relatedToApi: 'data',\n  name: 'Delete Global Data',\n  Description: 'User can delete global data from the Hoist store',\n  defaultRoleValue: false,\n  defaultAnonValue: false\n});\nexports.Read = Claims.create({\n  key: 'DataRead',\n  relatedToApi: 'data',\n  name: 'Read Data',\n  Description: 'User can fetch data from the Hoist store',\n  defaultRoleValue: true,\n  defaultAnonValue: true\n});\nexports.Write = Claims.create({\n  key: 'DataWrite',\n  relatedToApi: 'data',\n  name: 'Write Data',\n  Description: 'User can write data to the Hoist store',\n  defaultRoleValue: true,\n  defaultAnonValue: true\n});\nexports.Delete = Claims.create({\n  key: 'DataDelete',\n  relatedToApi: 'data',\n  name: 'Delete Data',\n  Description: 'User can delete data from the Hoist store',\n  defaultRoleValue: false,\n  defaultAnonValue: false\n});\n\n"
   },
   {
+    "__docId__": 5,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -108,6 +114,7 @@
     }
   },
   {
+    "__docId__": 6,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -120,6 +127,7 @@
     "content": "'use strict';\n//claims should be positive 'can do something not cannot do something'\n//claims should be singular unless always about something plural\n\nvar Claims = require('./claims');\n\nClaims.data = require('./data');\nmodule.exports = Claims;\n\n/*\n[{\n  name: 'Read Data',\n  key: 'read-data',\n  api: 'data',\n  dataGranular: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Write Data',\n  key: 'write-data',\n  api: 'data',\n  dataGranular: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Sign Up',\n  key: 'create-user',\n  api: 'auth',\n  globalOnly: true,\n  anonAllowed: true,\n  defaultValue: true\n}, {\n  name: 'Invite User',\n  key: 'invite-user',\n  api: 'auth',\n  defaultValue: true\n}, {\n  name: 'Change User\\'s Role',\n  key: 'change-role',\n  api: 'auth',\n  defaultValue: false\n}, {\n  name: 'Send Notification',\n  key: 'send-notification',\n  api: 'notify',\n  anonAllowed: true,\n  globalOnly: true,\n  defaultValue: true\n}, {\n  name: 'Upload File',\n  key: 'upload-file',\n  api: 'file',\n  default: true,\n  globalOnly: true,\n  anonAllowed: true\n}, {\n  name: 'Read File',\n  key: 'read-file',\n  api: 'file',\n  default: true,\n  globalOnly: true,\n  anonAllowed: true\n}, {\n  name: 'Use Connector',\n  key: 'use-connector',\n  api: 'proxy',\n  default: false,\n  globalOnly: true\n}, {\n  name: 'Create Bucket',\n  key: 'create-bucket',\n  api: 'bucket',\n  globalOnly: true,\n  default: true\n}, {\n  name: 'View Members in Bucket',\n  key: 'view-bucket-member',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'Delete Bucket',\n  key: 'delete-bucket',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'View Bucket Meta Data',\n  key: 'view-bucket',\n  api: 'bucket',\n  default: false\n}, {\n  name: 'Update Bucket Meta Data',\n  key: 'update-bucket',\n  api: 'bucket',\n  default: false\n}];*/\n"
   },
   {
+    "__docId__": 7,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -140,6 +148,7 @@
     }
   },
   {
+    "__docId__": 8,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -149,9 +158,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "'use strict';\nimport {\n  extend,\n  find,\n  any\n}\nfrom 'lodash';\nimport Bluebird from 'bluebird';\n\nclass Context {\n  constructor(properties) {\n    extend(this, properties);\n  }\n  getClaims() {\n    /* returns claims against anon, user, and bucket role */\n    var claimList = [];\n    if (!this.application) {\n      return claimList;\n    }\n    if (!this.environment) {\n      this.environment = 'live';\n    }\n    claimList = claimList.concat(this.application.anonymousPermissions[this.environment]);\n    if (!this.user || !this.roles) {\n      return claimList;\n    }\n    var userRole = find(this.roles, (role) => {\n      return role._id === this.user.roles.mainRole && role.environment === this.environment;\n    });\n    if (userRole) {\n      claimList = claimList.concat(userRole.claims);\n    }\n    if (!this.bucket) {\n      return claimList;\n    }\n    var userBucketRole = find(this.user.roles.bucketRoles, (innerBucketRole) => {\n      return innerBucketRole.bucket === this.bucket._id;\n    });\n    if (userBucketRole) {\n      var bucketRole = find(this.roles, (role) => {\n        return role._id === userBucketRole.role && role.environment === this.environment;\n      });\n      if (bucketRole) {\n        claimList = claimList.concat(bucketRole.claims);\n      }\n    }\n    return claimList;\n  }\n  hasClaim(claim) {\n    return Promise.resolve().then(() => {\n      if (!claim || !claim.key) {\n        return false;\n      }\n      return any(this.getClaims(), (key) => {\n        return key === claim.key;\n      });\n    });\n  }\n}\nvar _context;\nContext.set = function (context, callback) {\n  _context = context;\n  return Bluebird.resolve(_context)\n    .nodeify(callback);\n};\nContext.current = function () {\n  return _context;\n};\n\nContext.get = function (callback) {\n  return Bluebird.try(function () {\n    if (!_context) {\n      _context = new Context({});\n    }\n    return _context;\n  }).nodeify(callback);\n};\n\nContext.claims = require('./claims');\n\nmodule.exports = Context;\n"
+    "content": "'use strict';\nimport {\n  extend,\n  find,\n  some\n}\nfrom 'lodash';\nimport Bluebird from 'bluebird';\n\nclass Context {\n  constructor(properties) {\n    extend(this, properties);\n  }\n  getClaims() {\n    /* returns claims against anon, user, and bucket role */\n    var claimList = [];\n    if (!this.application) {\n      return claimList;\n    }\n    if (!this.environment) {\n      this.environment = 'live';\n    }\n    claimList = claimList.concat(this.application.anonymousPermissions[this.environment]);\n    if (!this.user || !this.roles) {\n      return claimList;\n    }\n    var userRole = find(this.roles, (role) => {\n      return role._id === this.user.roles.mainRole && role.environment === this.environment;\n    });\n    if (userRole) {\n      claimList = claimList.concat(userRole.claims);\n    }\n    if (!this.bucket) {\n      return claimList;\n    }\n    var userBucketRole = find(this.user.roles.bucketRoles, (innerBucketRole) => {\n      return innerBucketRole.bucket === this.bucket._id;\n    });\n    if (userBucketRole) {\n      var bucketRole = find(this.roles, (role) => {\n        return role._id === userBucketRole.role && role.environment === this.environment;\n      });\n      if (bucketRole) {\n        claimList = claimList.concat(bucketRole.claims);\n      }\n    }\n    return claimList;\n  }\n  hasClaim(claim) {\n    return Promise.resolve().then(() => {\n      if (!claim || !claim.key) {\n        return false;\n      }\n      return some(this.getClaims(), (key) => {\n        return key === claim.key;\n      });\n    });\n  }\n}\nvar _context;\nContext.set = function (context, callback) {\n  _context = context;\n  return Bluebird.resolve(_context)\n    .nodeify(callback);\n};\nContext.current = function () {\n  return _context;\n};\n\nContext.get = function (callback) {\n  return Bluebird.try(function () {\n    if (!_context) {\n      _context = new Context({});\n    }\n    return _context;\n  }).nodeify(callback);\n};\n\nContext.claims = require('./claims');\n\nmodule.exports = Context;\n"
   },
   {
+    "__docId__": 9,
     "kind": "class",
     "static": true,
     "variation": null,
@@ -168,6 +178,7 @@
     "interface": false
   },
   {
+    "__docId__": 10,
     "kind": "constructor",
     "static": false,
     "variation": null,
@@ -189,6 +200,7 @@
     "generator": false
   },
   {
+    "__docId__": 11,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -208,6 +220,7 @@
     "generator": false
   },
   {
+    "__docId__": 12,
     "kind": "member",
     "static": false,
     "variation": null,
@@ -225,6 +238,7 @@
     }
   },
   {
+    "__docId__": 13,
     "kind": "method",
     "static": false,
     "variation": null,
@@ -251,6 +265,7 @@
     "generator": false
   },
   {
+    "__docId__": 14,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -286,6 +301,7 @@
     "generator": false
   },
   {
+    "__docId__": 15,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -308,6 +324,7 @@
     "generator": false
   },
   {
+    "__docId__": 16,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -337,6 +354,7 @@
     "generator": false
   },
   {
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -345,10 +363,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -357,10 +376,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -369,10 +389,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -381,10 +402,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -393,10 +415,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -405,10 +428,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -417,10 +441,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -429,10 +454,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -441,10 +467,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -453,10 +480,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -465,10 +493,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -477,10 +506,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -489,10 +519,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -501,10 +532,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -513,10 +545,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -525,10 +558,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -537,10 +571,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -549,10 +584,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -561,10 +597,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -573,10 +610,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -585,10 +623,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -597,10 +636,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -609,10 +649,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -621,10 +662,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -633,10 +675,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -645,10 +688,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -657,10 +701,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -669,10 +714,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -681,10 +727,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -693,10 +740,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -705,10 +753,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -717,10 +766,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -729,10 +779,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -741,10 +792,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -753,10 +805,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -765,10 +818,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -777,10 +831,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 55,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -789,10 +844,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -801,10 +857,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -813,10 +870,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -825,10 +883,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -837,10 +896,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -849,10 +909,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -861,10 +922,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -873,10 +935,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -885,10 +948,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -897,10 +961,11 @@
     "memberof": "BuiltinExternal/ECMAScriptExternal.js",
     "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -909,10 +974,11 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -921,10 +987,11 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -933,10 +1000,11 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~Element",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -945,10 +1013,11 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~Event",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -957,10 +1026,11 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~Node",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -969,10 +1039,11 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 72,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -981,10 +1052,24 @@
     "memberof": "BuiltinExternal/WebAPIExternal.js",
     "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
     "access": null,
-    "description": null,
+    "description": "",
     "builtinExternal": true
   },
   {
+    "__docId__": 73,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 74,
     "kind": "testFile",
     "static": true,
     "variation": null,
@@ -997,6 +1082,7 @@
     "content": "'use strict';\nvar Context = require('../../src');\nvar expect = require('chai').expect;\nvar BBPromise = require('bluebird');\nvar sinon = require('sinon');\n\ndescribe('Context', function () {\n  describe('session management', function () {\n    it('returns same context on chain', function () {\n\n      Context.get()\n        .then(function (context) {\n          context.name = 'I set this name';\n        }).then(function () {\n          return Context.get();\n        }).then(function (context) {\n          expect(context.name).to.eql('I set this name');\n        }).done();\n\n    });\n\n\n  });\n  describe('#getClaims', function () {\n    describe('if no application set', function () {\n      var context = new Context({});\n      it('returns empty list', function () {\n        return expect(context.getClaims()).to.eql([]);\n      });\n    });\n    describe('if application and no user', function () {\n      var context = new Context({\n        environment: 'dev',\n        application: {\n          anonymousPermissions: {\n            live: ['claim-1', 'claim-3'],\n            dev: ['claim-1', 'claim-2']\n          }\n        }\n      });\n\n      it('returns all anonymous claims', function () {\n        expect(context.getClaims()).to.eql(['claim-1', 'claim-2']);\n      });\n    });\n    describe('if application and user but no bucket', function () {\n      var context = new Context({\n        roles: [{\n          _id: 'user',\n          environment: 'dev',\n          application: 'application',\n          claims: ['claim-3', 'claim-4']\n        }, {\n          _id: 'user',\n          environment: 'live',\n          application: 'application',\n          claims: ['claim-5', 'claim-6']\n        }, {\n          _id: 'admin',\n          environment: 'live',\n          application: 'application',\n          claims: ['claim-7', 'claim-8']\n        }],\n        application: {\n          _id: 'application',\n          anonymousPermissions: {\n            dev: ['claim-1', 'claim-2']\n          }\n        },\n        environment: 'dev',\n        user: {\n          roles: {\n            mainRole: 'user',\n            bucketRoles: [{\n              bucket: 'bucket1',\n              role: 'admin'\n            }]\n          }\n        }\n      });\n\n      it('returns all user and anon claims', function () {\n        expect(context.getClaims()).to.eql(['claim-1', 'claim-2', 'claim-3', 'claim-4']);\n      });\n    });\n    describe('if application and user and bucket', function () {\n      var context = new Context({\n        roles: [{\n          _id: 'user',\n          environment: 'dev',\n          application: 'application',\n          claims: ['claim-3', 'claim-4']\n        }, {\n          _id: 'user',\n          environment: 'live',\n          application: 'application',\n          claims: ['claim-5', 'claim-6']\n        }, {\n          _id: 'admin',\n          environment: 'live',\n          application: 'application',\n          claims: ['claim-7', 'claim-8']\n        }],\n        application: {\n          _id: 'application',\n          anonymousPermissions: {\n            dev: ['claim-1', 'claim-2'],\n            live: ['claim-9', 'claim-10']\n          }\n        },\n        user: {\n          roles: {\n            mainRole: 'user',\n            bucketRoles: [{\n              bucket: 'bucket1',\n              role: 'admin'\n            }]\n          }\n        },\n        bucket: {\n          _id: 'bucket1'\n        }\n\n      });\n      it('returns all user, bucket and anon claims', function () {\n        expect(context.getClaims()).to.eql(['claim-9', 'claim-10', 'claim-5', 'claim-6', 'claim-7', 'claim-8']);\n      });\n    });\n  });\n  describe('#hasClaim', function () {\n    var context = new Context();\n    var claim = Context.claims.create({\n      key: 'TestClaim',\n      relatedToApi: 'test',\n      name: 'A Test Claim',\n      Description: 'This is a test claim',\n      defaultRoleValue: true,\n      defaultAnonValue: true\n    });\n    var stub;\n    before(function () {\n      stub = sinon.stub(context, 'getClaims');\n    });\n    after(function () {\n      context.getClaims.restore();\n    });\n    it('returns true if claim in getClaims', function () {\n      stub.returns(['claim-1', 'claim-2', 'TestClaim', 'claim-3']);\n      return expect(context.hasClaim(claim)).to.eventually.become(true);\n    });\n    it('returns false if claim not in getClaims', function () {\n      stub.returns(['claim-1', 'claim-2', 'claim-3']);\n      return expect(context.hasClaim(claim)).to.eventually.become(false);\n    });\n    it('returns false if not passed a valid claim', function () {\n      return BBPromise.all([\n        expect(context.hasClaim()).to.eventually.become(false),\n        expect(context.hasClaim({})).to.eventually.become(false)\n      ]);\n    });\n  });\n});\n"
   },
   {
+    "__docId__": 75,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1010,6 +1096,7 @@
     "lineNumber": 7
   },
   {
+    "__docId__": 76,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1023,6 +1110,7 @@
     "lineNumber": 8
   },
   {
+    "__docId__": 77,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1036,6 +1124,7 @@
     "lineNumber": 9
   },
   {
+    "__docId__": 78,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1049,6 +1138,7 @@
     "lineNumber": 24
   },
   {
+    "__docId__": 79,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1062,6 +1152,7 @@
     "lineNumber": 25
   },
   {
+    "__docId__": 80,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1075,6 +1166,7 @@
     "lineNumber": 27
   },
   {
+    "__docId__": 81,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1088,6 +1180,7 @@
     "lineNumber": 31
   },
   {
+    "__docId__": 82,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1101,6 +1194,7 @@
     "lineNumber": 42
   },
   {
+    "__docId__": 83,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1114,6 +1208,7 @@
     "lineNumber": 46
   },
   {
+    "__docId__": 84,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1127,6 +1222,7 @@
     "lineNumber": 82
   },
   {
+    "__docId__": 85,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1140,6 +1236,7 @@
     "lineNumber": 86
   },
   {
+    "__docId__": 86,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1153,6 +1250,7 @@
     "lineNumber": 125
   },
   {
+    "__docId__": 87,
     "kind": "testDescribe",
     "static": true,
     "variation": null,
@@ -1166,6 +1264,7 @@
     "lineNumber": 130
   },
   {
+    "__docId__": 88,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1179,6 +1278,7 @@
     "lineNumber": 147
   },
   {
+    "__docId__": 89,
     "kind": "testIt",
     "static": true,
     "variation": null,
@@ -1192,6 +1292,7 @@
     "lineNumber": 151
   },
   {
+    "__docId__": 90,
     "kind": "testIt",
     "static": true,
     "variation": null,
