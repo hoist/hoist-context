@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">tests/unit_tests/context_tests.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <a data-ice="repoURL" href="https://github.com/hoist/hoist-context.git" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav">
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">tests/unit_tests/context_tests.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">&apos;use strict&apos;;
+var Context = require(&apos;../../src&apos;);
+var expect = require(&apos;chai&apos;).expect;
+var BBPromise = require(&apos;bluebird&apos;);
+var sinon = require(&apos;sinon&apos;);
+
+describe(&apos;Context&apos;, function () {
+  describe(&apos;session management&apos;, function () {
+    it(&apos;returns same context on chain&apos;, function () {
+
+      Context.get()
+        .then(function (context) {
+          context.name = &apos;I set this name&apos;;
+        }).then(function () {
+          return Context.get();
+        }).then(function (context) {
+          expect(context.name).to.eql(&apos;I set this name&apos;);
+        }).done();
+
+    });
+
+
+  });
+  describe(&apos;#getClaims&apos;, function () {
+    describe(&apos;if no application set&apos;, function () {
+      var context = new Context({});
+      it(&apos;returns empty list&apos;, function () {
+        return expect(context.getClaims()).to.eql([]);
+      });
+    });
+    describe(&apos;if application and no user&apos;, function () {
+      var context = new Context({
+        environment: &apos;dev&apos;,
+        application: {
+          anonymousPermissions: {
+            live: [&apos;claim-1&apos;, &apos;claim-3&apos;],
+            dev: [&apos;claim-1&apos;, &apos;claim-2&apos;]
+          }
+        }
+      });
+
+      it(&apos;returns all anonymous claims&apos;, function () {
+        expect(context.getClaims()).to.eql([&apos;claim-1&apos;, &apos;claim-2&apos;]);
+      });
+    });
+    describe(&apos;if application and user but no bucket&apos;, function () {
+      var context = new Context({
+        roles: [{
+          _id: &apos;user&apos;,
+          environment: &apos;dev&apos;,
+          application: &apos;application&apos;,
+          claims: [&apos;claim-3&apos;, &apos;claim-4&apos;]
+        }, {
+          _id: &apos;user&apos;,
+          environment: &apos;live&apos;,
+          application: &apos;application&apos;,
+          claims: [&apos;claim-5&apos;, &apos;claim-6&apos;]
+        }, {
+          _id: &apos;admin&apos;,
+          environment: &apos;live&apos;,
+          application: &apos;application&apos;,
+          claims: [&apos;claim-7&apos;, &apos;claim-8&apos;]
+        }],
+        application: {
+          _id: &apos;application&apos;,
+          anonymousPermissions: {
+            dev: [&apos;claim-1&apos;, &apos;claim-2&apos;]
+          }
+        },
+        environment: &apos;dev&apos;,
+        user: {
+          roles: {
+            mainRole: &apos;user&apos;,
+            bucketRoles: [{
+              bucket: &apos;bucket1&apos;,
+              role: &apos;admin&apos;
+            }]
+          }
+        }
+      });
+
+      it(&apos;returns all user and anon claims&apos;, function () {
+        expect(context.getClaims()).to.eql([&apos;claim-1&apos;, &apos;claim-2&apos;, &apos;claim-3&apos;, &apos;claim-4&apos;]);
+      });
+    });
+    describe(&apos;if application and user and bucket&apos;, function () {
+      var context = new Context({
+        roles: [{
+          _id: &apos;user&apos;,
+          environment: &apos;dev&apos;,
+          application: &apos;application&apos;,
+          claims: [&apos;claim-3&apos;, &apos;claim-4&apos;]
+        }, {
+          _id: &apos;user&apos;,
+          environment: &apos;live&apos;,
+          application: &apos;application&apos;,
+          claims: [&apos;claim-5&apos;, &apos;claim-6&apos;]
+        }, {
+          _id: &apos;admin&apos;,
+          environment: &apos;live&apos;,
+          application: &apos;application&apos;,
+          claims: [&apos;claim-7&apos;, &apos;claim-8&apos;]
+        }],
+        application: {
+          _id: &apos;application&apos;,
+          anonymousPermissions: {
+            dev: [&apos;claim-1&apos;, &apos;claim-2&apos;],
+            live: [&apos;claim-9&apos;, &apos;claim-10&apos;]
+          }
+        },
+        user: {
+          roles: {
+            mainRole: &apos;user&apos;,
+            bucketRoles: [{
+              bucket: &apos;bucket1&apos;,
+              role: &apos;admin&apos;
+            }]
+          }
+        },
+        bucket: {
+          _id: &apos;bucket1&apos;
+        }
+
+      });
+      it(&apos;returns all user, bucket and anon claims&apos;, function () {
+        expect(context.getClaims()).to.eql([&apos;claim-9&apos;, &apos;claim-10&apos;, &apos;claim-5&apos;, &apos;claim-6&apos;, &apos;claim-7&apos;, &apos;claim-8&apos;]);
+      });
+    });
+  });
+  describe(&apos;#hasClaim&apos;, function () {
+    var context = new Context();
+    var claim = Context.claims.create({
+      key: &apos;TestClaim&apos;,
+      relatedToApi: &apos;test&apos;,
+      name: &apos;A Test Claim&apos;,
+      Description: &apos;This is a test claim&apos;,
+      defaultRoleValue: true,
+      defaultAnonValue: true
+    });
+    var stub;
+    before(function () {
+      stub = sinon.stub(context, &apos;getClaims&apos;);
+    });
+    after(function () {
+      context.getClaims.restore();
+    });
+    it(&apos;returns true if claim in getClaims&apos;, function () {
+      stub.returns([&apos;claim-1&apos;, &apos;claim-2&apos;, &apos;TestClaim&apos;, &apos;claim-3&apos;]);
+      return expect(context.hasClaim(claim)).to.eventually.become(true);
+    });
+    it(&apos;returns false if claim not in getClaims&apos;, function () {
+      stub.returns([&apos;claim-1&apos;, &apos;claim-2&apos;, &apos;claim-3&apos;]);
+      return expect(context.hasClaim(claim)).to.eventually.become(false);
+    });
+    it(&apos;returns false if not passed a valid claim&apos;, function () {
+      return BBPromise.all([
+        expect(context.hasClaim()).to.eventually.become(false),
+        expect(context.hasClaim({})).to.eventually.become(false)
+      ]);
+    });
+  });
+});
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.2)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
